@@ -20,6 +20,18 @@ export default {
   components: {
     PartyfyLogo,
     ImageUpload
+  },
+  created: function() {
+    (async () => {
+      try {
+        const { data } = await fetch("/.netlify/functions/hello").then(res =>
+          res.json()
+        );
+        console.log(data);
+      } catch (err) {
+        console.log(err);
+      }
+    })();
   }
 };
 </script>

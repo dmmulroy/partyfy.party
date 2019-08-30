@@ -51,7 +51,8 @@ export default {
       formData.append("image", this.file, this.file.name);
 
       const partyImage = await fetch(
-        "https://partyfy-api.herokuapp.com/partyfy",
+        // "https://partyfy-api.herokuapp.com/partyfy",
+        "/.netlify/functions/partyfy",
         {
           method: "POST",
           body: formData
