@@ -15,17 +15,17 @@ exports.handler = event => {
             body: partyImage
           });
         } catch (err) {
-          console.error(err)
+          console.error(err);
           nah({ statusCode: 500, body: JSON.stringify(err) });
         }
       });
 
-      parser.on('error', err =>
-      console.error(err)  
-      nah({ statusCode: 500, body: JSON.stringify(err) })
-      );
+      parser.on('error', err => {
+        console.error(err);
+        nah({ statusCode: 500, body: JSON.stringify(err) });
+      });
     } catch (err) {
-      console.error(err)
+      console.error(err);
       nah({ statusCode: 500, body: JSON.stringify(err) });
     }
   });
