@@ -18,6 +18,8 @@ exports.handler = event => {
           nah({ statusCode: 500, body: err });
         }
       });
+
+      parser.on('error', err => nah({ statusCode: 500, body: err }));
     } catch (err) {
       nah({ statusCode: 500, body: err });
     }
