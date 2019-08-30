@@ -6,6 +6,7 @@ exports.handler = event => {
     try {
       const parser = new Multipart(event);
       parser.on('file', async file => {
+        console.log('here!');
         try {
           const partyImage = await partyfy(file);
 
