@@ -15,11 +15,11 @@ exports.handler = event => {
             body: partyImage
           });
         } catch (err) {
-          nah(err);
+          nah({ statusCode: 500, body: err });
         }
       });
     } catch (err) {
-      nah(err);
+      nah({ statusCode: 500, body: err });
     }
   });
 };

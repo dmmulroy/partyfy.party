@@ -47,7 +47,7 @@ export default {
     async onSubmit() {
       const formData = new FormData();
       const fileReader = new FileReader();
-
+      console.log("1");
       formData.append("image", this.file, this.file.name);
 
       const partyImage = await fetch(
