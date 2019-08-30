@@ -15,13 +15,15 @@ exports.handler = event => {
             body: partyImage
           });
         } catch (err) {
-          nah({ statusCode: 500, body: err });
+          nah({ statusCode: 500, body: JSON.stringify(err) });
         }
       });
 
-      parser.on('error', err => nah({ statusCode: 500, body: err }));
+      parser.on('error', err =>
+        nah({ statusCode: 500, body: JSON.stringify(err) })
+      );
     } catch (err) {
-      nah({ statusCode: 500, body: err });
+      nah({ statusCode: 500, body: JSON.stringify(err) });
     }
   });
 };
