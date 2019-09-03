@@ -2,9 +2,7 @@ const partyfy = require('partyfy');
 const Multipart = require('lambda-multipart');
 
 exports.handler = event => {
-  console.log('here!');
   return new Promise((yah, nah) => {
-    console.log('here!!');
     try {
       const parser = new Multipart(event);
       parser.on('file', async file => {
