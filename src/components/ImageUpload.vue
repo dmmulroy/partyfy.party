@@ -4,22 +4,29 @@
     <img v-if="imageData" v-bind:src="imageData" />
     <img v-if="partyImageData" v-bind:src="partyImageData" />
     <br />
-    <b-button size="is-large" type="is-primary" v-bind:disabled="!file" @click="onSubmit">Submit</b-button>
+    <b-button
+      size="is-large"
+      type="is-primary"
+      v-bind:disabled="!file"
+      @click="onSubmit"
+      >Submit</b-button
+    >
     <b-button
       tag="a"
       icon-left="download"
       size="is-large"
       v-if="partyImageData"
       v-bind:href="partyImageData"
-      v-bind:download="'party-'+file.name"
-    >Download</b-button>
+      v-bind:download="'party-' + file.name"
+      >Download</b-button
+    >
   </section>
 </template>
 
 <script>
-import DragAndDropUpload from "./DragAndDropUpload.vue";
+import DragAndDropUpload from './DragAndDropUpload.vue';
 export default {
-  name: "ImageUpload",
+  name: 'ImageUpload',
   components: {
     DragAndDropUpload
   },
@@ -48,13 +55,13 @@ export default {
       const formData = new FormData();
       const fileReader = new FileReader();
 
-      formData.append("image", this.file, this.file.name);
+      formData.append('image', this.file, this.file.name);
 
       const partyImage = await fetch(
-        // "https://partyfy-api.herokuapp.com/partyfy",
-        "/.netlify/functions/partyfy",
+        'https://partyfy-api.herokuapp.com/partyfy',
+        // "/.netlify/functions/partyfy",
         {
-          method: "POST",
+          method: 'POST',
           body: formData
         }
       ).then(res => res.blob());

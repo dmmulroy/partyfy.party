@@ -11,7 +11,11 @@ exports.handler = event => {
 
           yah({
             status: 200,
-            body: partyImage
+            headers: {
+              'Content-Type': 'image/gif'
+            },
+            body: partyImage.toString('base64'),
+            isBase64Encoded: true
           });
         } catch (err) {
           console.error(err);
