@@ -12,33 +12,21 @@
 </template>
 
 <script>
-import PartyfyLogo from "./components/PartyfyLogo.vue";
-import ImageUpload from "./components/ImageUpload.vue";
+import PartyfyLogo from './components/PartyfyLogo.vue';
+import ImageUpload from './components/ImageUpload.vue';
 
 export default {
-  name: "app",
+  name: 'app',
   components: {
     PartyfyLogo,
     ImageUpload
-  },
-  created: function() {
-    (async () => {
-      try {
-        const { data } = await fetch("/.netlify/functions/hello").then(res =>
-          res.json()
-        );
-        console.log(data);
-      } catch (err) {
-        console.log(err);
-      }
-    })();
   }
 };
 </script>
 
 <style>
 #app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

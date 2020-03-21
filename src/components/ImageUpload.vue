@@ -52,25 +52,28 @@ export default {
       fileReader.readAsDataURL(this.file);
     },
     async onSubmit() {
-      const formData = new FormData();
-      const fileReader = new FileReader();
+      try {
+        const formData = new FormData();
+        const fileReader = new FileReader();
 
-      formData.append('image', this.file, this.file.name);
+        formData.append('image', this.file, this.file.name);
 
-      const partyImage = await fetch(
-        'https://partyfy-api.herokuapp.com/partyfy',
-        // "/.netlify/functions/partyfy",
-        {
-          method: 'POST',
-          body: formData
-        }
-      ).then(res => res.blob());
+        const partyImage = await fetch(
+          'https://partyfy-api.herokuapp.com/partyfy',
+          {
+            method: 'POST',
+            body: formData
+          }
+        ).then(res => res.blob());
 
-      fileReader.onload = e => {
-        this.partyImageData = e.target.result;
-      };
+        fileReader.onload = e => {
+          this.partyImageData = e.target.result;
+        };
 
-      fileReader.readAsDataURL(partyImage);
+        fileReader.readAsDataURL(partyImage);
+      } catch (err) {
+        console.log(err);
+      }
     }
   }
 };
