@@ -4,13 +4,7 @@
     <img v-if="imageData" v-bind:src="imageData" />
     <img v-if="partyImageData" v-bind:src="partyImageData" />
     <br />
-    <b-button
-      size="is-large"
-      type="is-primary"
-      v-bind:disabled="!file"
-      @click="onSubmit"
-      >Submit</b-button
-    >
+    <b-button size="is-large" type="is-primary" v-bind:disabled="!file" @click="onSubmit">Submit</b-button>
     <b-button
       tag="a"
       icon-left="download"
@@ -18,15 +12,14 @@
       v-if="partyImageData"
       v-bind:href="partyImageData"
       v-bind:download="'party-' + file.name"
-      >Download</b-button
-    >
+    >Download</b-button>
   </section>
 </template>
 
 <script>
-import DragAndDropUpload from './DragAndDropUpload.vue';
+import DragAndDropUpload from "./DragAndDropUpload.vue";
 export default {
-  name: 'ImageUpload',
+  name: "ImageUpload",
   components: {
     DragAndDropUpload
   },
@@ -56,15 +49,13 @@ export default {
         const formData = new FormData();
         const fileReader = new FileReader();
 
-        formData.append('image', this.file, this.file.name);
+        formData.append("image", this.file, this.file.name);
 
-        const partyImage = await fetch(
-          'https://partyfy-api.herokuapp.com/partyfy',
-          {
-            method: 'POST',
-            body: formData
-          }
-        ).then(res => res.blob());
+        const partyImage = await fetch("http://134.122.23.177/partyfy", {
+          method: "POST",
+          body: formData,
+          mode: "no-cors"
+        }).then(res => res.blob());
 
         fileReader.onload = e => {
           this.partyImageData = e.target.result;
@@ -72,6 +63,7 @@ export default {
 
         fileReader.readAsDataURL(partyImage);
       } catch (err) {
+        // eslint-disable-next-line no-console
         console.log(err);
       }
     }
